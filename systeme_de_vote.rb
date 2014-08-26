@@ -10,7 +10,9 @@ client = Twitter::Streaming::Client.new do |config|
 	config.access_token_secret = ENV['ACCESS_TOKEN_SECRET']
 end
 
-redis = Redis.new
+uri = URI.parse(ENV["REDISTOGO_URL"])
+redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
+
 systeme_vote = redis
 systeme_vote.set "demarrer", "off"
 

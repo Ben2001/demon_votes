@@ -30,9 +30,13 @@ loop do
 		client.filter(:track => "#{track1}, #{track2}, #{track3}" ) do |object|
 			if object.text.include?track1
 				sum1 += 1
+				puts "#{sum1}"
+				puts "ça marche !"
 				redis.hset "votes", "counter1", "#{sum1}"
 			elsif object.text.include?track2
 				sum2 += 1
+				puts "#{sum2}"
+				puts "ça marche !"
 				redis.hset "votes", "counter2", "#{sum2}"
 			elsif object.text.include?track3
 				sum3 += 1
